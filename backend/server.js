@@ -7,7 +7,7 @@ const path = require("path")
 
 const db= process.env.DATABASE.replace('<PASSWORD>',process.env.DATABASE_PASSWORD)
 
-const PORT =process.env.PORT || 8000
+
 mongoose.connect(db,{
     useNewUrlParser:true,
     useCreateIndex:true,
@@ -23,10 +23,12 @@ if(process.env.NODE_ENV==="production")
 
     app.get('*',(req,res)=>
     {
-        res.sendFile(path.resolve(__dirname,"frontend","build","index.html"))
+        res.sendFile(path.join(__dirname,"frontend","build","index.html"))
     })
 }
 
+
+const PORT =process.env.PORT || 8000
 app.listen(PORT,()=>
 {
     console.log(`App running on ${PORT}`)
